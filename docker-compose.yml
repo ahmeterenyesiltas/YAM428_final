@@ -4,6 +4,9 @@ services:
     image: nginx:latest
     ports:
       - "80:80"
+    links:
+      - php
+      - database	
 
   php:
     image: php:7.3.6-fpm
@@ -18,3 +21,6 @@ services:
       - MYSQL_DATABASE=final
     ports:
       - "3306:3306"
+
+volumes:
+  - "final/docker:/var/lib/mysql"
